@@ -1,6 +1,27 @@
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Xuân 2026</title>
 <style>
+@media (max-width: 768px){
+    body{
+        font-size: 18px;
+    }
+
+    nav a{
+        display: block;
+        margin: 8px 0;
+        font-size: 16px;
+    }
+
+    h1{
+        font-size: 24px;
+    }
+
+    h2{
+        font-size: 20px;
+    }
+}
+
 @font-face {
     font-family: "TetFont";
     src: url("chutet.ttf") format("truetype");
@@ -20,8 +41,9 @@ section{
     padding:25px;
 }
 img{
-    width:450px;
-	height:250px;
+    width: 90%;
+    max-width: 100%;
+    height: auto;
 	padding:5px;
 	margin:5px;
 	object-fit: cover;
@@ -41,12 +63,14 @@ nav a{
     background:#c62828;
     margin:5px;
     border-radius:10px;
-  
+    transition: 0.3s;
 }
+
 nav a:hover{
     background:#ff5252;
-	font-size:12px;
+    transform: scale(1.05);
 }
+
  
 table{
     margin: 30px auto;
@@ -54,6 +78,12 @@ table{
     width: 85%;
     background: #ffe0b2;
     border-radius: 10px;
+}
+
+.bang{
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
 }
 
 th, td{
@@ -95,23 +125,24 @@ li{
 p{
  text-align:left;
 }
-source{
-border-radius:20px;
-}
+
 .anh-tet{
     width: 80%;
-	height: 80%;
+	height: auto;
     object-fit: cover;
     border-radius: 25px;
 }
 .anh-tet2{
-    height:100%;
+    width: 80%;
+    height:auto;
     object-fit: cover;
     border-radius: 25px;
 }
 
 .video-tet{
-    border-radius: 25px;  
+    width: 90%;
+    max-width: 100%;
+    border-radius: 25px;
     object-fit: cover;     
     overflow: hidden;      
 }
@@ -230,7 +261,7 @@ Tết không chỉ là khoảnh khắc chuyển giao của đất trời mà cò
 </section>
 <section id="video">
     <h2>VIDEO NHẠC TẾT</h2>
-    <video class="video-tet" controls width="80%">
+    <video class="video-tet" controls>
         <source src="vd2.mp4" type="video/mp4">
     </video>
 </section>
@@ -238,7 +269,7 @@ Tết không chỉ là khoảnh khắc chuyển giao của đất trời mà cò
 <section id="ltrinh">
     <h1>🌸 LỊCH TRÌNH NGÀY TẾT BÍNH NGỌ 🌸</h1>
 
-    <div class="container">
+    <div class="bang">
         <table>
             <tr>
                 <th>Thời gian</th>
@@ -263,7 +294,7 @@ Tết không chỉ là khoảnh khắc chuyển giao của đất trời mà cò
             <tr>
                 <td>Mùng 3</td>
                 <td><p>Du xuân</p></td>
-                <td><p>Thư giãn, vui vẻ<p></td>
+                <td><p>Thư giãn, vui vẻ</p></td>
             </tr>
             <tr>
                 <td>Mùng 4</td>

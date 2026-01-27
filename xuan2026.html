@@ -116,7 +116,10 @@ border-radius:20px;
     overflow: hidden;      
 }
 
-.lantern{
+
+
+
+.longden{
     position: fixed;
     top: 40px;
     width: 10%;
@@ -124,11 +127,11 @@ border-radius:20px;
     z-index: 1000;
 }
 
-.lantern.left{
+.longden.left{
     left: 20px;
 }
 
-.lantern.right{
+.longden.right{
     right: 20px;
     animation-delay: 1.5s;
 }
@@ -146,10 +149,49 @@ border-radius:20px;
 }
 
 
+
+
+.hoa{
+    position: fixed;
+    top: -40px;
+    font-size: 24px;      
+    pointer-events: none;
+    animation: fall 6s linear infinite;
+    z-index: 9999;
+}
+
+@keyframes fall{
+    from{
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to{
+        transform: translateY(110vh);
+        opacity: 0.8;
+    }
+}
+
+
+
 </style>
 <body>
-<img src="longden.png" class="lantern left">
-<img src="longden.png" class="lantern right">
+<script>
+setInterval(() => {
+    let flower = document.createElement("span");
+    flower.innerHTML = "🌸";         
+    flower.className = "hoa";
+    flower.style.left = Math.random() * window.innerWidth + "px";
+    flower.style.fontSize = (16 + Math.random() * 20) + "px";
+    document.body.appendChild(flower);
+    setTimeout(() => {
+        flower.remove();
+    }, 6000);
+}, 500);
+</script>
+
+
+<img src="longden.png" class="longden left">
+<img src="longden.png" class="longden right">
 <header>
 <h1>🌸 <b>Xuân 2026 – Tết Bính Ngọ</b> 🌸</h1>
 <h4>Mùa xuân đoàn viên – Yêu thương sum vầy</h4>

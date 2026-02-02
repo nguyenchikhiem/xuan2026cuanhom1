@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy New Year 2026</title>
+
+<style>
+html, body {
+    margin: 30;
+    padding: 30;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: radial-gradient(circle at bottom, #020111 0%, #000000 70%);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.chucmung {
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    text-align: center;
+    font-size: 3rem;
+    color: #FFD700;
+    text-shadow: 0 0 15px #ff0, 0 0 30px red;
+    animation: sangdan 2s infinite alternate;
+    z-index: 10;
+}
+
+@keyframes sangdan {
+    from { opacity: 0.7; }
+    to { opacity: 1; }
+}
+
+.phaohoa {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: transparent;
+    animation: nohoa 2.2s ease-out forwards;
+}
+
+@keyframes nohoa {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(18);
+        opacity: 0;
+    }
+}
+
+.tiaphao {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+}
+</style>
+</head>
+
+<body>
+
+<h1 class="chucmung">🎉 HAPPY NEW YEAR 2026 🎆</h1>
+<a href="xuan2026.html">⬅ Quay về website Xuân 2026</a>
+<script>
+function taoPhaoHoa() {
+    const phao = document.createElement("div");
+    phao.className = "phaohoa";
+
+    const x = Math.random() * window.innerWidth;
+    const y = Math.random() * window.innerHeight * 0.6;
+
+    phao.style.left = x + "px";
+    phao.style.top = y + "px";
+
+    const mauSac = ["#ff4d4d", "#ffd700", "#00e5ff", "#ff6ec7", "#7CFF00"];
+
+    for (let i = 0; i < 30; i++) {
+        const tia = document.createElement("div");
+        tia.className = "tiaphao";
+
+        const goc = Math.random() * 360;
+        const khoangCach = Math.random() * 70;
+
+        tia.style.background =
+            mauSac[Math.floor(Math.random() * mauSac.length)];
+
+        tia.style.transform =
+            `rotate(${goc}deg) translate(${khoangCach}px)`;
+
+        phao.appendChild(tia);
+    }
+
+    document.body.appendChild(phao);
+
+    setTimeout(() => phao.remove(), 2200);
+}
+
+setInterval(taoPhaoHoa, 500);
+</script>
+<audio id="nhacnen" autoplay loop muted>
+    <source src="wbh.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const nhac = document.getElementById("nhacnen");
+
+function batTieng() {
+    nhac.muted = false;
+    nhac.play();
+}
+
+document.addEventListener("click", batTieng, { once: true });
+document.addEventListener("touchstart", batTieng, { once: true });
+
+</script>
+
+</body>
+</html>

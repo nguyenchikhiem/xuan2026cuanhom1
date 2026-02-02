@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Ngựa săn mồi</title>
+
+<style>
+    body {
+        background: #111;
+        color: white;
+        font-family: Arial;
+        text-align: center;
+    }
+
+    canvas {
+        background: black;
+        border: 3px solid lime;
+        margin-top: 10px;
+    }
+
+    .thongtin {
+        margin-top: 10px;
+        font-size: 18px;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>🐍 RẮN SĂN MỒI</h1>
+
+<div class="thongtin">
+    Điểm: <span id="diem">0</span> |
+    Tốc độ: <span id="tocdo">120</span>
+</div>
+
+<canvas id="game" width="400" height="400"></canvas>
+
+<script>
+/* ================== BIẾN CƠ BẢN ================== */
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+
+const kichThuocO = 20;
+const soCot = canvas.width / kichThuocO;
+const soHang = canvas.height / kichThuocO;
+
+let ran, moi, huong;
+let diem;
+let tocDo = 120;
+let vongLap;
+
+/* ================== KHỞI TẠO GAME ================== */
+function khoiTao() {
+    ran = [
+        { x: 5 * kichThuocO, y: 5 * kichThuocO }
+    ];
+
+    huong = "PHAI";
+    diem = 0;
+    tocDo = 190;
+
+    moi = taoMoiNgauNhien();
+
+    document.getElementById("diem").innerText = diem;
+    document.getElementById("tocdo").innerText = tocDo;
+
+    clearInterval(vongLap);
+    vongLap = setInterval(vongLapGame, tocDo);
+}
+
+/* ================== TẠO MỒI ================== */
+function taoMoiNgauNhien() {
+    let x, y;
+    do {
+        x = Math.floor(Math.random() * soCot) * kichThuocO;
+        y = Math.floor(Math.random() * soHang) * kichThuocO;
+    } while (
+        x === 0 || y === 0 ||
+        x === (soCot - 1) * kichThuocO ||
+        y === (soHang - 1) * kichThuocO
+    );
+    return { x, y };
+}
+
+/* ================== VẼ GAME ================== */
+function veGame() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // vẽ mồi
+    ctx.fillStyle = "red";
+    ctx.fillRect(moi.x, moi.y, kichThuocO, kichThuocO);
+
+    // vẽ rắn
+    for (let i = 0; i < ran.length; i++) {
+        ctx.fillStyle = i === 0 ? "lime" : "green";
+        ctx.fillRect(ran[i].x, ran[i].y, kichThuocO, kichThuocO);
+    }
+}
+
+/* ================== DI CHUYỂN RẮN ================== */
+function diChuyenRan() {
+    let dau = { ...ran[0] };
+
+    if (huong === "LEN") dau.y -= kichThuocO;
+    if (huong === "XUONG") dau.y += kichThuocO;
+    if (huong === "TRAI") dau.x -= kichThuocO;
+    if (huong === "PHAI") dau.x += kichThuocO;
+
+    // ăn mồi
+    if (dau.x === moi.x && dau.y === moi.y) {
+        diem++;
+        moi = taoMoiNgauNhien();
+
+        document.getElementById("diem").innerText = diem;
+
+        // tăng tốc độ
+        if (tocDo > 50) {
+            tocDo -= 5;
+            document.getElementById("tocdo").innerText = tocDo;
+            clearInterval(vongLap);
+            vongLap = setInterval(vongLapGame, tocDo);
+        }
+    } else {
+        ran.pop();
+    }
+
+    ran.unshift(dau);
+}
+
+/* ================== KIỂM TRA THUA ================== */
+function kiemTraThua() {
+    let dau = ran[0];
+
+    // đụng tường
+    if (
+        dau.x < 0 || dau.y < 0 ||
+        dau.x >= canvas.width ||
+        dau.y >= canvas.height
+    ) {
+        return true;
+    }
+
+    // cắn thân
+    for (let i = 1; i < ran.length; i++) {
+        if (dau.x === ran[i].x && dau.y === ran[i].y) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+/* ================== VÒNG LẶP GAME ================== */
+function vongLapGame() {
+ 
+    if (kiemTraThua()) {
+        clearInterval(vongLap);
+        alert("💀 Thua rồi! Điểm của bạn: " + diem);
+        khoiTao();
+        return;
+    }
+
+    diChuyenRan();
+    veGame();
+}
+
+/* ================== BÀN PHÍM ================== */
+document.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowUp" && huong !== "XUONG") huong = "LEN";
+    if (e.key === "ArrowDown" && huong !== "LEN") huong = "XUONG";
+    if (e.key === "ArrowLeft" && huong !== "PHAI") huong = "TRAI";
+    if (e.key === "ArrowRight" && huong !== "TRAI") huong = "PHAI";
+});
+
+/* ================== CHẠY ================== */
+khoiTao();
+</script>
+
+</body>
+</html>

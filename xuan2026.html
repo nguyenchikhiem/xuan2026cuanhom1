@@ -27,13 +27,12 @@
     src: url("chutet.ttf") format("truetype");
 }
 body{
-   
 	background:#fff3e0;
     color:#7a1f1f;
     text-align:center;
 }
 header{
-    background:#c62828;
+    background: url("anhnen.jpg") no-repeat center/cover;
     color:yellow;
     padding:20px;
 }
@@ -41,7 +40,7 @@ section{
     padding:25px;
 }
 img{
-    width: 90%;
+    width: 40%;
     max-width: 100%;
     height: auto;
 	padding:5px;
@@ -67,6 +66,21 @@ nav a{
 }
 
 nav a:hover{
+    background:#ff5252;
+    transform: scale(1.05);
+}
+
+a{
+    display:inline-block;
+    margin-top:20px;
+    text-decoration:none;
+    background:#c62828;
+    color:yellow;
+    padding:8px 20px;
+    border-radius:10px;
+}
+
+a:hover{
     background:#ff5252;
     transform: scale(1.05);
 }
@@ -171,7 +185,7 @@ p{
     0%{
         transform: translateY(0);
     }
-    25%{
+    50%{
         transform: translateY(-20px);
     }
     100%{
@@ -185,20 +199,20 @@ p{
 .hoa{
     position: fixed;
     top: -40px;
-    font-size: 24px;      
+    font-size: 10px;      
     pointer-events: none;
-    animation: fall 6s linear infinite;
+    animation: roi 6s linear infinite;
     z-index: 9999;
 }
 
-@keyframes fall{
+@keyframes roi{
     from{
         transform: translateY(0);
         opacity: 1;
     }
     to{
         transform: translateY(110vh);
-        opacity: 0.8;
+        opacity: 0.008;
     }
 }
 
@@ -256,6 +270,12 @@ Tết không chỉ là khoảnh khắc chuyển giao của đất trời mà cò
 Tìm hiểu thêm về phong tục Tết cổ truyền Việt Nam tại đây.
 </a>
 </p>
+<p>
+<a href="phaohoa.html">
+MỘT CHÚ THƯ GIẢNG CÙNG...
+</a>
+</p>
+<a href="rananmoi.html"> Ngựa ăn mồi</a>
 </section>
 
 <section id="hinhanh">
